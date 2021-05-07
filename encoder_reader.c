@@ -20,9 +20,9 @@ void EncoderSetup(struct Encoder* encoder, int chipSelect, int clockPin, int dat
     //     encoder->reading[i] = 0;
     // }
 
-    //pinMode(chipSelect, OUTPUT);
-    //pinMode(clockPin, OUTPUT);
-    //pinMode(dataPin, INPUT);
+    pinMode(chipSelect, OUTPUT);
+    pinMode(clockPin, OUTPUT);
+    pinMode(dataPin, INPUT);
 }
 
 int _pow(int x, unsigned int y)
@@ -43,17 +43,17 @@ int Read(struct Encoder* encoder)
     int pos = 0;
     uint8_t byteArr[16];
 
-    //digitalWrite(encoder->chipSelect, HIGH);
-    //digitalWrite(encoder->chipSelect, LOW);
+    digitalWrite(encoder->chipSelect, HIGH);
+    digitalWrite(encoder->chipSelect, LOW);
 
     for (int j = 0; j < 16; j++) {
-        //digitalWrite(encoder->clockPin, LOW);
-        //digitalWrite(encoder->clockPin, HIGH);
-        //byteArr[j] = digitalRead(encoder->dataPin) == HIGH ? 1 : 0;
+        digitalWrite(encoder->clockPin, LOW);
+        digitalWrite(encoder->clockPin, HIGH);
+        byteArr[j] = digitalRead(encoder->dataPin) == HIGH ? 1 : 0;
     }
 
-    //digitalWrite(encoder->clockPin, LOW);
-    //digitalWrite(encoder->clockPin, HIGH);
+    digitalWrite(encoder->clockPin, LOW);
+    digitalWrite(encoder->clockPin, HIGH);
 
     for (int j = 0; j < 10; j++) {
         pos += byteArr[j] * _pow(2, 10 - (j + 1));
