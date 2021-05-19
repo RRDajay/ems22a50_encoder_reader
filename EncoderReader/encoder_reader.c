@@ -12,14 +12,6 @@ void EncoderSetup(struct Encoder* encoder, int chipSelect, int clockPin, int dat
     encoder->lastAngle = 0;
     encoder->reading = 0;
 
-    // encoder->idx = 0;
-    // encoder->avg_reading = 0;
-
-    // for (int i = 0; i < READING_SIZE; i++)
-    // {
-    //     encoder->reading[i] = 0;
-    // }
-
     pinMode(chipSelect, OUTPUT);
     pinMode(clockPin, OUTPUT);
     pinMode(dataPin, INPUT);
@@ -92,26 +84,6 @@ float ReadAbsoluteAngle(struct Encoder* encoder)
 
     encoder->reading = angle;
 
-    // encoder->reading[encoder->idx] = angle;
 
-    // encoder->idx++;
-
-    // if(encoder->idx >= 5)
-    // {
-    //     AverageReading(encoder);
-    //     encoder->idx = 0;
-    // }
 }
 
-// float AverageReading(struct Encoder* encoder)
-// {
-//     encoder->avg_reading = 0;
-
-//     for (int i = 0; i < READING_SIZE; i++)
-//     {
-//         encoder->avg_reading += encoder->reading[i];
-//     }
-
-//     encoder->avg_reading = encoder->avg_reading/ READING_SIZE;
-
-// }
