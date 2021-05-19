@@ -18,10 +18,7 @@ typedef struct Encoder {
 
 	float lastAngle;
 
-	//int idx;
 	volatile float reading;
-	// volatile float reading[READING_SIZE];
-	// volatile float avg_reading;
 
 } Encoder_t;
 
@@ -29,7 +26,6 @@ void EncoderSetup(struct Encoder* encoder, int chipSelect, int clockPin, int dat
 
 float ReadAngle(struct Encoder* encoder);
 float ReadAbsoluteAngle(struct Encoder* encoder);
-// float AverageReading(struct Encoder* encoder); // Gets the average reading of the encoder
 
 int Read(struct Encoder* encoder);
 int _pow(int x, unsigned y);
