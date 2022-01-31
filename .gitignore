@@ -2,3 +2,6 @@
 *.vcxproj
 *.vcxproj.*
 .vs
+
+inc
+src
