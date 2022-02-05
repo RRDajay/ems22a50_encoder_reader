@@ -1,8 +1,6 @@
 #include "main.h"
 void SystemClock_Config(void);
 
-volatile uint8_t spi_buffer[4];
-volatile uint16_t angle;
 volatile Encoder obj;
 /**
   * @brief  The application entry point.
@@ -29,7 +27,7 @@ int main(void)
   while (1)
   {
 
-    ems_encoder_read_angle(&obj);
+    ems_encoder_read_angle((Encoder*)&obj);
 
     HAL_Delay(10);
 
