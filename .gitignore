@@ -2,6 +2,7 @@
 *.vcxproj
 *.vcxproj.*
 .vs
+.vscode
 
 inc
 src
