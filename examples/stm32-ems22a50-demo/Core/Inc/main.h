@@ -34,6 +34,7 @@ extern "C" {
 #include "clock.h"
 #include "stdint.h"
 #include "stdio.h"
+#include "ems_encoder.h"
 
 
 /* Private includes ----------------------------------------------------------*/

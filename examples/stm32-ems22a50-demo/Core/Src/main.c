@@ -3,7 +3,7 @@ void SystemClock_Config(void);
 
 volatile uint8_t spi_buffer[4];
 volatile uint16_t angle;
-
+volatile Encoder obj;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -23,13 +23,16 @@ int main(void)
   MX_USART1_UART_Init();
   MX_SPI1_Init();
 
+  /* Initialize Encoder */
+  obj = ems_encoder_init(GPIOA, GPIO_PIN_4, &hspi1);
+
   while (1)
   {
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, RESET);
+    ems_encoder_read_angle(&obj);
 
-    HAL_SPI_Receive(&hspi1, (uint8_t*)spi_buffer, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, SET);
+    HAL_Delay(10);
+
 
     /* 
 
@@ -41,10 +44,6 @@ int main(void)
         d9 | d8 | d7 | d6 | d5 | d4 | d3 | d2 | d1 | d0 | s1 | s2 | s3 | s4 | s5  | 0
 
      */
-
-    volatile uint16_t temp = ((uint16_t)spi_buffer[1]) << 9U | ((uint16_t)spi_buffer[0]<<1u);
-    angle = (temp >> 6U);
-    printf("%i\r\n", angle);
         
   }
 }
